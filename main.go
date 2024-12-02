@@ -11,8 +11,7 @@ import (
 // Define text as const
 const (
 	buttonNewTaskText       = "NEW"                                                  // Button: ButtonNewTask
-	comboBoxFilterText      = "ONE;TWO;THREE"                                        // ComboBox: ComboBoxFilter
-	dropdownBoxFilterText   = "ONE;TWO;THREE"                                        // DropdownBox: DropdownBoxFilter
+	comboBoxFilterText      = "ALL;PRIORITY;PROJECTS;CONTEXTS"                       // ComboBox: ComboBoxFilter
 	statusBarText           = "Code by Lugh - Version @test"                         // StatusBar: StatusBar
 	groupBoxTaskText        = "TASK"                                                 // GroupBox: GroupBoxTask
 	buttonCreditsText       = "#214#"                                                // Button: ButtonCredits
@@ -42,6 +41,7 @@ var (
 	listTaskTagsText       = ""      // ListView: ListTaskTags
 	labelCreatedDateText   = ""      // Label: LabelCreatedDate
 	buttonTaskCompleteText = "#112#" // Button: ButtonTaskComplete
+	dropdownBoxFilterText  = ""      // DropdownBox: DropdownBoxFilter
 )
 
 // Define anchors
@@ -157,6 +157,7 @@ func main() {
 		updateTaskPriority()
 		updateTaskCreatedDate()
 		updateTaskCompleteButton()
+		updateDropdownBoxFilter()
 		//----------------------------------------------------------------------------------
 
 		// Draw

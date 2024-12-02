@@ -188,6 +188,73 @@ func addNewTask(nTask string) {
 	tasks.AddTask(task)
 }
 
+func getAllPriority() string {
+	var text string
+	for _, task := range tasks {
+		if len(text) == 0 && task.HasPriority() {
+			text = task.Priority
+		}
+		if task.HasPriority() && !strings.Contains(text, task.Priority) {
+			text += ";"
+			text += task.Priority
+		}
+	}
+	return text
+}
+
+func getAllProjects() string {
+	var text string
+	var projects []string
+	for _, task := range tasks {
+		if task.HasProjects() {
+			projects = append(projects, task.Projects...)
+		}
+	}
+	for _, project := range projects {
+		if len(text) == 0 {
+			text = project
+		}
+		if !strings.Contains(text, project) {
+			text += ";"
+			text += project
+		}
+	}
+	return text
+}
+
+func getAllContexts() string {
+	var text string
+	var contexts []string
+	for _, task := range tasks {
+		if task.HasContexts() {
+			contexts = append(contexts, task.Contexts...)
+		}
+	}
+	for _, context := range contexts {
+		if len(text) == 0 {
+			text = context
+		}
+		if !strings.Contains(text, context) {
+			text += ";"
+			text += context
+		}
+	}
+	return text
+}
+
+func updateDropdownBoxFilter() {
+	switch comboBoxFilterActive {
+	case 0:
+		dropdownBoxFilterText = "ALL;COMPLETED;NOT_COMPLETED"
+	case 1:
+		dropdownBoxFilterText = getAllPriority()
+	case 2:
+		dropdownBoxFilterText = getAllProjects()
+	case 3:
+		dropdownBoxFilterText = getAllContexts()
+	}
+}
+
 // Save the taskList on disk
 func saveTaskList() {
 	err := tasks.WriteToPath("todo.txt")
